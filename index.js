@@ -30,11 +30,11 @@ function initApp(){
         choices: [
            "View Employees",
            "View Employees by Department", 
-           "View Employees by Manager",
+           "View Roles",
+           "Add Department",
            "Add Employee",
-           "Remove Employee",
+           "Add Roles",
            "Update Employee Role",
-           "Update Employee Manager"
         ],
     })
     .then ((answer) => {
@@ -45,20 +45,20 @@ function initApp(){
             case 'View Employees by Department':
                 displayDepartment();
                 break;
-            case 'View Employees by Manager':
-                displayManager();
+            case 'View Roles':
+                displayRoles();
+                break;
+            case 'Add Department':
+                addDepartment();
                 break;
             case 'Add Employee':
-                addEmployees();
+                addEmployee();
                 break;
-            case 'Remove Employee':
-                removeEmployee();
+            case 'Add Roles':
+                addRoles();
                 break;
             case 'Update Employee Role':
-                updateEmployee();
-                break;
-            case 'Update Employee Manager':
-                updateManager();
+                updateRole();
                 break;
             default: 
                 console.log(`invalid : ${answer.action}`);
@@ -69,7 +69,7 @@ function initApp(){
 
 const displayEmployees = () => {
     console.log('Display Employees is working.');
-    connection.query("SELECT * FROM employee", function (err, data){
+    connection.query("SELECT * FROM employees_db.employee", function (err, data){
         console.table(data);
         initApp();
     })
@@ -77,25 +77,33 @@ const displayEmployees = () => {
 
 const displayDepartment = () => {
     console.log('Display Department is working.');
+    connection.query("SELECT * FROM employees_db.department", function (err, data){
+        console.table(data);
+        initApp();
+    })
 }
 
-const displayManager = () => {
-    console.log('Display Manager is working.');
+const displayRoles = () => {
+    console.log('Display the roles');
+    connection.query("SELECT * FROM employees_db.role", function (err, data){
+        console.table(data);
+        initApp();
+    } )
 }
 
-const addEmployees = () => {
-    console.log('Add an Employee is working');
+const addDepartment = () => {
+    console.log('Add a department is working.');
 }
 
-const removeEmployee = () => {
-    console.log('Remove an employee is working.');
+const addEmployee = () => {
+    console.log('Add an employee is working.');
 }
 
-const updateEmployee = () => {
-    console.log('Update an employee is working.');
+const addRoles = () => {
+    console.log('Add a roll is working.');
 }
 
-const updateManager = () => {
-    console.log('Update the manager is working');
+const updateRole = () => {
+    console.log('Update role is working');
 }
 
