@@ -66,3 +66,32 @@ function initApp(){
         }
     });
 };
+
+const displayEmployees = () => {
+    console.log('Display Employees is working.');
+}
+
+const displayDepartment = () => {
+    console.log('Display Department is working.');
+}
+
+const displayManager = () => {
+    console.log('Display Manager is working.');
+}
+
+const addEmployees = () => {
+    console.log('Add an Employee is working');
+}
+
+const removeEmployee = () => {
+    console.log('Remove an employee is working.');
+}
+
+const updateEmployee = () => {
+    console.log('Update an employee is working.');
+}
+
+const updateManager = () => {
+    console.log('Update the manager is working');
+}
+
