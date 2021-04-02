@@ -171,6 +171,24 @@ const addRoles = () => {
 
 const updateRole = () => {
     console.log('Update role is working');
-    
+    inquirer.prompt([
+    {
+        type: "input",
+        name: "first_name",
+        message: "What is your first name?"
+
+    },
+    {
+        type: "input",
+        name: "role_id",
+        message: "What is your new role id?"
+    },
+]).then(function(res) {
+    connection.query("UPDATE employees_db.employee SET role_id = ? WHERE first_name = ?", [res.role_id, res.first_name], function (err, data) {
+        if (err) throw err;
+        console.table('Role.ID Updated');
+        initApp();
+    });
+})
 }
 
