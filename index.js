@@ -138,15 +138,39 @@ const addEmployee = () => {
         if (err) throw err;
         console.table("Employee Added");
         initApp();
-    })
+    });
 })
 }
 
 const addRoles = () => {
     console.log('Add a roll is working.');
+    inquirer.prompt([
+    {
+        type: "input",
+        name: "title",
+        message: "What is the role title?",
+    }, 
+    {
+        type: "input",
+        name: "salary",
+        message: "What is the role salary?",
+    },
+    {
+        type: "input",
+        name: "department_id",
+        message: "What is the department id?"
+    },
+]).then(function (res) {
+    connection.query('INSERT INTO employees_db.role (title, salary, department_id) VALUES (?,?,?)', [res.title, res.salary, res.department_id], function (err, data){
+        if (err) throw err;
+        console.table("Role added.");
+        initApp();
+    });
+})
 }
 
 const updateRole = () => {
     console.log('Update role is working');
+    
 }
 
