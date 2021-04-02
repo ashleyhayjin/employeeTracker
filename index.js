@@ -25,7 +25,7 @@ connection.connect(function(err){
 function initApp(){
     inquirer.prompt({
         type: "list",
-        name: "task",
+        name: "action",
         message: "What would you like to do?",
         choices: [
            "View Employees",
@@ -39,7 +39,7 @@ function initApp(){
     })
     .then ((answer) => {
         switch (answer.action){
-            case 'View Employees':
+            case "View Employees":
                 displayEmployees();
                 break;
             case 'View Employees by Department':
