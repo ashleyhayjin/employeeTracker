@@ -69,6 +69,10 @@ function initApp(){
 
 const displayEmployees = () => {
     console.log('Display Employees is working.');
+    connection.query("SELECT * FROM employee", function (err, data){
+        console.table(data);
+        initApp();
+    })
 }
 
 const displayDepartment = () => {
