@@ -11,7 +11,7 @@ const connection = mysql.createConnection({
 
     password: '451208abC!',
 
-    databse: "employees_db",
+    database: "employees_db",
 });
 
 connection.connect(function(err){
@@ -69,7 +69,7 @@ function initApp(){
 
 const displayEmployees = () => {
     console.log('Display Employees is working.');
-    connection.query("SELECT * FROM employees_db.employee", function (err, data){
+    connection.query("SELECT employee.first_name, employee.last_name, CONCAT(manager.first_name, ' ', manager.last_name) AS manager_name, role.title AS Role_Title, role.salary as Role_Salary, department.name AS Department_Name FROM employee LEFT JOIN role ON employee.role_id = role.id LEFT JOIN department ON role.department_id = department.id LEFT JOIN employee manager ON manager.id = employee.manager_id;", function (err, data){
         console.table(data);
         initApp();
     })
