@@ -93,10 +93,53 @@ const displayRoles = () => {
 
 const addDepartment = () => {
     console.log('Add a department is working.');
+    inquirer.prompt({
+        type: "input",
+        name: "department",
+        message: "What is the department you want to add?",
+    }).then(function(res) {
+        connection.query('INSERT INTO employees_db.department (name) VALUES (?)', res.department, function(err, data) {
+            if (err) throw err;
+            console.table('Department inserted');
+            initApp();
+        })
+    })
 }
 
 const addEmployee = () => {
     console.log('Add an employee is working.');
+    inquirer.prompt([
+    {
+        type: "input",
+        name: "first_name",
+        message: "What is your first name?",
+
+    },
+    {
+        type: "input",
+        name: "last_name",
+        message: "What is your last name?",
+
+    },
+    {
+        type: "input",
+        name: "role_id",
+        message: "What is your role id?",
+
+    },
+    {
+        type: "input",
+        name: "manager_id",
+        message: "What is your manager id?",
+
+    },
+]).then (function (res) {
+    connection.query('INSERT INTO employees_db.employee (first_name, last_name, role_id, manager_id) VALUES (?,?,?,?)', [res.first_name, res.last_name, res.role_id, res.manager_id], function (err, data) {
+        if (err) throw err;
+        console.table("Employee Added");
+        initApp();
+    })
+})
 }
 
 const addRoles = () => {
